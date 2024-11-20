@@ -241,35 +241,165 @@
 # print(non_stop_store.get_info('29.03.2024'))
 # print(non_stop_store.get_info('30.03.2024'))
 # ---------------------------------
-class Customer:
-    def __init__(self, name):
-        self.name = name
-        # Добавьте сюда атрибут "скидка" со значением по умолчанию 10.
-        self.__discount = 10
+# class Customer:
+#     def __init__(self, name):
+#         self.name = name
+#         # Добавьте сюда атрибут "скидка" со значением по умолчанию 10.
+#         self.__discount = 10
 
-    # Реализуйте методы get_price() и set_discount().
-    def get_price(self, original_price):
-        new_price = round(original_price * (1 - self.__discount / 100), 2)
-        return new_price
+#     # Реализуйте методы get_price() и set_discount().
+#     def get_price(self, original_price):
+#         new_price = round(original_price * (1 - self.__discount / 100), 2)
+#         return new_price
 
-    def set_discount(self, new_discount):
-        if new_discount <= 80:
-            self.__discount = new_discount
-        else:
-            self.__discount = 80
+#     def set_discount(self, new_discount):
+#         if new_discount <= 80:
+#             self.__discount = new_discount
+#         else:
+#             self.__discount = 80
 
 
-# Проверим работу программы:
-customer = Customer('Иван Иванович')
-original_price = 85
-print(
-    f'С исходной скидкой Иван Иванович заплатит '
-    f'{customer.get_price(original_price)} рублей вместо {original_price}'
-)
-# Изменим скидку до неприемлемого уровня.
-# Метод set_discount() должен уменьшить размер скидки до 80%.
-customer.set_discount(90)
-print(
-    f'С новой скидкой Иван Иванович заплатит '
-    f'{customer.get_price(original_price)} рублей вместо {original_price}'
-)
+# # Проверим работу программы:
+# customer = Customer('Иван Иванович')
+# original_price = 85
+# print(
+#     f'С исходной скидкой Иван Иванович заплатит '
+#     f'{customer.get_price(original_price)} рублей вместо {original_price}'
+# )
+# # Изменим скидку до неприемлемого уровня.
+# # Метод set_discount() должен уменьшить размер скидки до 80%.
+# customer.set_discount(90)
+# print(
+#     f'С новой скидкой Иван Иванович заплатит '
+#     f'{customer.get_price(original_price)} рублей вместо {original_price}'
+# )
+# ---------------------
+# class Solution:
+#     def isValid(self, s: str) -> bool:
+#         brackets_pair = {
+#             ')': '(',
+#             ']': '[',
+#             '}': '{',
+#         }
+#         new_string = 'Z'
+
+#         for char in s:
+#             if char in brackets_pair:
+#                 if new_string[-1] == brackets_pair[char]:
+#                     new_string = new_string[:-1]
+#                 else:
+#                     return False
+#             else:
+#                 new_string += char
+#         return False if new_string != 'Z' else True
+
+
+# test = Solution()
+# print(test.isValid('()'))
+# print(test.isValid('()[]{}'))
+# print(test.isValid('(]'))
+# print(test.isValid('([])'))
+# print(test.isValid('([)]'))
+# print(test.isValid('(){}}{'))
+# -------------------------
+# Импортируйте необходимые модули.
+# from typing import List
+# from datetime import datetime
+
+# DATE_FORMAT = '%d.%m.%Y'
+
+
+# # Укажите два параметра функции:
+# def validate_record(name, date_of_birth):
+#     # Напишите код, верните булево значение.
+#     try:
+#         date_of_birth = datetime.strptime(date_of_birth, DATE_FORMAT)
+#         return True
+#     except ValueError:
+#         print(f'Некорректный формат даты в записи: {name}, {date_of_birth}')
+#         return False
+
+
+# # Укажите параметры функции:
+# def process_people(data: List[tuple]) -> dict:
+#     # Объявите счётчики.
+#     good_count = bad_count = 0
+
+#     # в каждой паре значений из списка data
+#     # проверьте корректность формата даты рождения
+#     # и в зависимости от результата проверки увеличьте один из счётчиков.
+#     for name, date_of_birth in data:
+#         if validate_record(name, date_of_birth):
+#             good_count += 1
+#         else:
+#             bad_count += 1
+
+#     return {'good': good_count, 'bad': bad_count}
+
+
+# data = [
+#     ('Иван Иванов', '10.01.2004'),
+#     ('Пётр Петров', '15.03.1956'),
+#     ('Зинаида Зеленая', '6 февраля 1997'),
+#     ('Елена Ленина', 'Второе мая тысяча девятьсот восемьдесят пятого'),
+#     ('Кирилл Кириллов', '26/11/2003'),
+# ]
+
+# # data = [
+# #     ('Акакій Башмачкинъ', '23 марта 1791 года'),
+# #     ('Яков Степанов', 'Двадцать шестое июля 1971'),
+# #     ('Потап Алексеев', '16.09.1990'),
+# #     ('Евгений Женин', '5 декабря 1984'),
+# #     ('Кондрат Александров', '18.01.1994'),
+# # ]
+
+# statistics = process_people(data)
+# # Выведите на экран информацию о корректных и некорректных записях
+# # в таком формате:
+# # Корректных записей: <число>
+# # Некорректных записей: <число>
+
+# print('Корректных записей:', statistics['good'])
+# print('Корректных записей:', statistics['bad'])
+
+# # Answer
+# # Некорректный формат даты в записи: Акакій Башмачкинъ, 23 марта 1791 года
+# # Некорректный формат даты в записи: Яков Степанов, Двадцать шестое июля 1971
+# # Некорректный формат даты в записи: Евгений Женин, 5 декабря 1984
+# # Корректных записей: 2
+# # Некорректных записей: 3
+# ------------------------------
+# from datetime import datetime
+# from random import sample
+
+
+# def choose_days():
+#     # Определяем диапазон дат первой половины месяца.
+#     first_month_half = list(range(0, 15))
+
+#     # Выбор трёх случайных чисел:
+#     random_days = sample(first_month_half, k=3)
+#     # Cортировка этих чисел по возрастанию:
+#     sorted_days = sorted(random_days)
+
+#     # Получаем сегодняшнюю дату.
+#     # На её основе будут генерироваться даты для занятий:
+#     now = datetime.now()
+
+#     # Чтобы было проще формировать сообщение, начнём цикл с 1.
+#     for i in range(1, 4):
+#         # Генерируем дату занятия, подменяя номер дня в сегодняшней дате.
+#         practice_day = now.replace(day=sorted_days[i - 1]).strftime("%d.%m.%Y")
+#         print(f'{i}-е занятие: {practice_day}')
+
+
+# choose_days()
+# ---------------------------------
+# Список для тестирования.
+numbers = [1, 4, 11]
+
+# Здесь напишите ваше генераторное выражение.
+simple_generator = sum(digit**2 for digit in numbers if digit % 3 == 0)
+
+# Распечатайте сумму квадратов.
+print(simple_generator)
