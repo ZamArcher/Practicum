@@ -395,11 +395,154 @@
 
 # choose_days()
 # ---------------------------------
-# Список для тестирования.
-numbers = [1, 4, 11]
+# # Список для тестирования.
+# numbers = [1, 4, 11]
 
-# Здесь напишите ваше генераторное выражение.
-simple_generator = sum(digit**2 for digit in numbers if digit % 3 == 0)
+# # Здесь напишите ваше генераторное выражение.
+# simple_generator = sum(digit**2 for digit in numbers if digit % 3 == 0)
 
-# Распечатайте сумму квадратов.
-print(simple_generator)
+
+# # Распечатайте сумму квадратов.
+# print(simple_generator)
+# ---------------------------
+# class Product:
+#     def __init__(self, name, retail_price, purchase_price):
+#         self.name = name
+#         self.retail_price = retail_price
+#         self.purchase_price = purchase_price
+
+#     # Опишите свойство profit
+#     @property
+#     def profit(self):
+#         """Возвращает  разницу между розничной и закупочной ценой товара."""
+#         return self.retail_price - self.purchase_price
+
+#     # Опишите статический метод average_price()
+#     @staticmethod
+#     def average_price(prices=None):
+#         """
+#         Принимает список розничных цен нескольких товаров и возвращает
+#         их среднюю розничную цену.
+#         """
+#         return sum(prices) / len(prices) if prices else 0
+
+#     # Опишите свойство information
+#     @property
+#     def information(self):
+#         """
+#         Возвращает строку с информацией о товаре (название, розничная и
+#         закупочная цена)
+#         """
+#         return (
+#             f'Товар: {self.name}, розничная цена: {self.retail_price}, '
+#             f'закупочная цена: {self.purchase_price}'
+#         )
+
+
+# # Данные для проверки, не изменяйте их.
+# product_1 = Product('Картошка', 100, 90)
+# product_2 = Product('Перчатки', 150, 120)
+# product_3 = Product('Велосипед', 170, 150)
+# # product_test = Product('Шляпа', 1000, 800)
+
+# assortment_prices = [
+#     product_1.retail_price,
+#     product_2.retail_price,
+#     product_3.retail_price,
+# ]
+
+
+# print(f'Средняя стоимость: {Product.average_price(assortment_prices)}')
+# print(f'Прибыль магазина с товара {product_1.name}: {product_1.profit}')
+# print(f'Информация о товаре {product_1.name}: {product_1.information}')
+# # print(product_test.information)
+# # print(Product.average_price([100, 300, 800]))
+# --------------------------
+# def fibonacci(n):
+#     # Допишите функцию.
+#     num = 0
+#     num_1 = 1
+#     while num <= n:
+#         yield num
+#         num, num_1 = num_1, num + num_1
+
+
+# sequence = fibonacci(10)
+# for number in sequence:
+#     print(number)
+# -----------------------------------
+# Напишите декоратор obfuscator
+# def obfuscator(func):
+#     def wrapper():
+#         result = func()
+#         name = result['name']
+#         secret_name = name[0] + (len(name) - 2) * '*' + name[-1]
+#         result['name'] = secret_name
+#         password = result['password']
+#         secret_password = len(password) * '*'
+#         result['password'] = secret_password
+#         return result
+
+#     return wrapper
+
+
+# @obfuscator
+# def get_credentials():
+#     return {'name': 'StasBasov', 'password': 'iamthebest'}
+
+
+# print(get_credentials())
+# ------------------------
+from typing import Optional
+
+
+class User:
+    def __init__(
+        self,
+        first_name: Optional[str] = None,
+        last_name: Optional[str] = None,
+        username: Optional[str] = None,
+    ):
+        if not first_name and not last_name and not username:
+            raise ValueError('Необходимо указать параметры пользователя')
+
+        self.first_name = first_name
+        self.last_name = last_name
+        self.username = username
+
+    # Опишите метод класса with_name.
+    @classmethod
+    def with_name(cls, first_name, last_name):
+        return User(first_name, last_name)
+
+    # Опишите метод класса with_username.
+    @classmethod
+    def with_username(cls, username):
+        if cls.is_username_allowed(username):
+
+            return User(username=username)
+        else:
+            raise ValueError('Некорректное имя пользователя')
+
+    # Опишите статический метод класса is_username_allowed.
+    @staticmethod
+    def is_username_allowed(username: str):
+        return False if username.startswith('admin') else True
+
+    # Опишите метод-свойство full_name.
+    @property
+    def full_name(self):
+
+        # print(self.username)
+        if self.username:
+            return f'@{self.username}'
+        else:
+            return f'{self.first_name} {self.last_name}'
+
+
+# stas = User.with_name('Стас', 'Басов')
+# print(stas.full_name)
+
+# Попробуем создать пользователя с "запрещённым" именем.
+ne_stas = User.with_username('Alex')
+print(ne_stas.full_name)
