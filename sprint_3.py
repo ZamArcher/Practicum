@@ -493,56 +493,79 @@
 
 # print(get_credentials())
 # ------------------------
+# from typing import Optional
+
+
+# class User:
+#     def __init__(
+#         self,
+#         first_name: Optional[str] = None,
+#         last_name: Optional[str] = None,
+#         username: Optional[str] = None,
+#     ):
+#         if not first_name and not last_name and not username:
+#             raise ValueError('Необходимо указать параметры пользователя')
+
+#         self.first_name = first_name
+#         self.last_name = last_name
+#         self.username = username
+
+#     # Опишите метод класса with_name.
+#     @classmethod
+#     def with_name(cls, first_name, last_name):
+#         return User(first_name, last_name)
+
+#     # Опишите метод класса with_username.
+#     @classmethod
+#     def with_username(cls, username):
+#         if cls.is_username_allowed(username):
+
+#             return User(username=username)
+#         else:
+#             raise ValueError('Некорректное имя пользователя')
+
+#     # Опишите статический метод класса is_username_allowed.
+#     @staticmethod
+#     def is_username_allowed(username: str):
+#         return False if username.startswith('admin') else True
+
+#     # Опишите метод-свойство full_name.
+#     @property
+#     def full_name(self):
+
+#         # print(self.username)
+#         if self.username:
+#             return f'@{self.username}'
+#         else:
+#             return f'{self.first_name} {self.last_name}'
+
+
+# # stas = User.with_name('Стас', 'Басов')
+# # print(stas.full_name)
+
+# # Попробуем создать пользователя с "запрещённым" именем.
+# ne_stas = User.with_username('Alex')
+# print(ne_stas.full_name)
+# -----------------------
+
 from typing import Optional
 
 
-class User:
-    def __init__(
-        self,
-        first_name: Optional[str] = None,
-        last_name: Optional[str] = None,
-        username: Optional[str] = None,
-    ):
-        if not first_name and not last_name and not username:
-            raise ValueError('Необходимо указать параметры пользователя')
-
-        self.first_name = first_name
-        self.last_name = last_name
-        self.username = username
-
-    # Опишите метод класса with_name.
-    @classmethod
-    def with_name(cls, first_name, last_name):
-        return User(first_name, last_name)
-
-    # Опишите метод класса with_username.
-    @classmethod
-    def with_username(cls, username):
-        if cls.is_username_allowed(username):
-
-            return User(username=username)
-        else:
-            raise ValueError('Некорректное имя пользователя')
-
-    # Опишите статический метод класса is_username_allowed.
-    @staticmethod
-    def is_username_allowed(username: str):
-        return False if username.startswith('admin') else True
-
-    # Опишите метод-свойство full_name.
-    @property
-    def full_name(self):
-
-        # print(self.username)
-        if self.username:
-            return f'@{self.username}'
-        else:
-            return f'{self.first_name} {self.last_name}'
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 
-# stas = User.with_name('Стас', 'Басов')
-# print(stas.full_name)
+class Solution:
+    def mergeTwoLists(
+        self, list1: Optional[ListNode], list2: Optional[ListNode]
+    ) -> Optional[ListNode]:
+        return ListNode(list1)
 
-# Попробуем создать пользователя с "запрещённым" именем.
-ne_stas = User.with_username('Alex')
-print(ne_stas.full_name)
+
+test = Solution()
+list1 = [1, 2, 4]
+list2 = [1, 3, 4]
+print(test.mergeTwoLists(ListNode(list1), ListNode(list2)))
