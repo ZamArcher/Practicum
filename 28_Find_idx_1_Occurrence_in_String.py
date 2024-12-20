@@ -13,8 +13,8 @@ haystack_2 = 'leetcode'
 needle_2 = 'leeto'
 
 test = Solution()
-print(test.strStr(haystack_1, needle_1))
-print(test.strStr(haystack_2, needle_2))
+assert test.strStr(haystack_1, needle_1) == 0
+assert test.strStr(haystack_2, needle_2) == -1
 
 
 # ------------- alter
