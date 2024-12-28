@@ -48,46 +48,31 @@
 Полная форма команды. Например, aaabcbc.
 """
 
-# ID посылки 130807014
+# ID посылки 130839232
+from string import digits
 from typing import List
 
 
-def decrypt_message(short_msg: str) -> str:
+def decrypt_message(encrypted_msg: str) -> str:
     """Функция расшифровки коротких сообщений."""
     temp_number: str = ''
-    numeric_stack: List[tuple] = []
-    result: str = ''
-    for token in short_msg:
+    numbers_stack: List[tuple] = []
+    decrypted_msg: str = ''
+    for token in encrypted_msg:
         if token == ']':
-            current_msg, number = numeric_stack.pop()
-            result = current_msg + number * result
-        elif token.isdigit():
+            current_msg, number = numbers_stack.pop()
+            decrypted_msg = current_msg + number * decrypted_msg
+        elif token in digits:
             temp_number += token
         elif token == '[':
-            numeric_stack.append((result, int(temp_number)))
+            numbers_stack.append((decrypted_msg, int(temp_number)))
             temp_number = ''
-            result = ''
+            decrypted_msg = ''
         else:
-            result += token
-    return result
+            decrypted_msg += token
+    return decrypted_msg
 
 
 if __name__ == '__main__':
-    short_msg = input()
-    print(decrypt_message(short_msg))
-
-    # test_1 = ''
-    # test_2 = '2[a]'
-    # test_3 = '3[a]2[bc]'
-    # test_4 = '2[abc]3[cd]ef'
-    # test_5 = '2[с]3[в]ш'
-    # test_6 = '3[a2[c]]'
-    # test_7 = '2[в3[ш]]с'
-
-    # assert decrypt_message(test_1) == ''
-    # assert decrypt_message(test_2) == 'aa'
-    # assert decrypt_message(test_3) == 'aaabcbc'
-    # assert decrypt_message(test_4) == 'abcabccdcdcdef'
-    # assert decrypt_message(test_5) == 'ссвввш'
-    # assert decrypt_message(test_6) == 'accaccacc'
-    # assert decrypt_message(test_7) == 'вшшшвшшшс'
+    encrypted_msg = input()
+    print(decrypt_message(encrypted_msg))
